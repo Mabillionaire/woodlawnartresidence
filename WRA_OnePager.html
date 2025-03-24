@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woodlawn Residence for Artists</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+        
+        /* Base Styles */
+        :root {
+            --primary: #677F6A;    /* Muted sage green - represents growth and sustainability */
+            --secondary: #D6A99A;  /* Soft terracotta - warmth and creativity */
+            --light: #F5F1EB;      /* Warm off-white - rest and calm */
+            --dark: #414141;       /* Soft black - muted authority */
+            --accent: #7A9E9F;     /* Soft teal - community connection */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Spectral', Georgia, serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 2.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #d06a4f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(244, 241, 222, 0.95);
+            backdrop-filter: blur(5px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 12rem 0 6rem;
+            background: linear-gradient(rgba(244, 241, 222, 0.8), rgba(244, 241, 222, 0.8)), url('/api/placeholder/1200/800') center/cover no-repeat;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 6rem 0;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.85;
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            padding: 6rem 0;
+            text-align: center;
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            display: flex;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .form-group input {
+            flex-grow: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .form-group button {
+            padding: 1rem 2rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-group button:hover {
+            background-color: #d06a4f;
+        }
+        
+        /* Support Section */
+        .support {
+            padding: 6rem 0;
+            background-color: #f8f8f8;
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .support-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-info {
+            max-width: 400px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-grid,
+            .values-grid,
+            .support-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">W.R.A.</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#values">Values</a>
+                    <a href="#newsletter">Newsletter</a>
+                    <a href="#support">Support</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="subtitle">A NEW MODEL FOR ARTIST HOUSING</div>
+                <h1>Woodlawn Residence for Artists</h1>
+                <p>Providing quality affordable housing for artists to connect and grow with their community. We're inverting the traditional gentrification model to ensure artists can remain where they create value.</p>
+                <div class="hero-btns">
+                    <a href="#newsletter" class="btn">Join Our Newsletter</a>
+                    <a href="#support" class="btn btn-outline">Support Our Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <div class="subtitle">OUR MISSION</div>
+                    <h2>Artists Stay Where They Are Valued</h2>
+                    <p>The Woodlawn Residence for Artists provides quality affordable housing for artists to connect and grow with each other and their community. We cultivate creative environments where artists can thrive while contributing to neighborhood cultural vitality and resisting displacement.</p>
+                    <p>We recognize that artists often create vibrant communities that then become unaffordable to them. Our model inverts this approach by intentionally creating affordable infrastructure that sustains creative energy.</p>
+                </div>
+                <div class="about-img">
+                    <img src="/api/placeholder/600/400" alt="Woodlawn Residence" style="width: 100%; height: auto;" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section id="values" class="values">
+        <div class="container">
+            <div class="subtitle" style="color: rgba(255,255,255,0.8)">OUR FOUNDATION</div>
+            <h2>Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">✧</div>
+                    <h3>Rest</h3>
+                    <p>We honor the need for physical, mental, and creative respite as essential to sustainable artistic practice.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">↗</div>
+                    <h3>Growth</h3>
+                    <p>We support the artistic and professional development of residents through meaningful connections.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">✦</div>
+                    <h3>Creativity</h3>
+                    <p>We celebrate the transformative power of artistic expression in all its forms.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⟡</div>
+                    <h3>Community Connection</h3>
+                    <p>We foster meaningful relationships between resident artists, neighbors, cultural institutions, and supporters.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚖</div>
+                    <h3>Affordability as Justice</h3>
+                    <p>We recognize affordable housing as cultural justice and actively work against displacement pressures.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">♢</div>
+                    <h3>Sustainable Growth</h3>
+                    <p>We develop approaches that can be replicated and scaled while maintaining program integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="newsletter">
+        <div class="container">
+            <div class="subtitle" style="color: rgba(255,255,255,0.8)">STAY UPDATED</div>
+            <h2>Join Our Newsletter</h2>
+            <p>Subscribe to receive updates about the Woodlawn Residence for Artists, including community events, artist spotlights, and opportunities to get involved.</p>
+            <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <div class="subtitle">SUPPORT OUR WORK</div>
+            <h2>Invest in Cultural Sustainability</h2>
+            <p>Your support helps us provide affordable housing for artists while creating cultural programming that benefits the entire Woodlawn community.</p>
+            
+            <div class="support-grid">
+                <div class="support-card">
+                    <h3>Become a Sponsor</h3>
+                    <p>Financial contributions at any level help subsidize artist housing and community programming.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                
+                <div class="support-card">
+                    <h3>Partner with Us</h3>
+                    <p>Organizations can partner with us on programming, resource sharing, and artist development.</p>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                </div>
+                
+                <div class="support-card">
+                    <h3>Volunteer</h3>
+                    <p>From event support to professional services, volunteers help us maximize our impact.</p>
+                    <a href="#contact" class="btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <div class="subtitle">GET IN TOUCH</div>
+                    <h2>Contact Us</h2>
+                    <p>Have questions about the Woodlawn Residence for Artists? Interested in supporting our work or learning more? We'd love to hear from you.</p>
+                    <p><strong>Email:</strong> info@woodlawnartresidence.com<br>
+                    <strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Address:</strong> Woodlawn, Chicago, IL</p>
+                    <p>Follow us on social media for updates on events, resident artists, and community programming.</p>
+                </div>
+                <div>
+                    <img src="/api/placeholder/600/400" alt="Contact Us" style="border-radius: 8px; width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo" style="color: white; margin-bottom: 1rem;">W.R.A.</div>
+                    <p>The Woodlawn Residence for Artists inverts traditional gentrification by intentionally creating affordable infrastructure that sustains creative energy in our community.</p>
+                    <div class="social-links">
+                        <a href="#">IG</a>
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#about" style="color: #ccc; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#values" style="color: #ccc; text-decoration: none;">Values</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#newsletter" style="color: #ccc; text-decoration: none;">Newsletter</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#support" style="color: #ccc; text-decoration: none;">Support</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#contact" style="color: #ccc; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Woodlawn Residence for Artists. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
